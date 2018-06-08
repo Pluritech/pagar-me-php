@@ -17,6 +17,10 @@ class TransactionSplitRules
      * Construct
      */
     public function __construct($data){
+        $this->setRecipientId($data['recipient_id']);
+        $this->setPercentage($data['percentage']);
+        $this->setLiable($data['liable']);
+        $this->setChargeProcessingFee($data['charge_processing_fee']);
 
     }
 
@@ -68,7 +72,7 @@ class TransactionSplitRules
         $params = array(
              'recipient_id'            => $this->getRecipientId()
             ,'percentage'              => $this->getPercentage()
-             'liable'                  => $this->getLiable()
+            ,'liable'                  => $this->getLiable()
             ,'charge_processing_fee'   => $this->getChargeProcessingFee()
 
         );

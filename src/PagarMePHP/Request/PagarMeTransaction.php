@@ -4,7 +4,7 @@ namespace PagarMePHP\Request;
 
 use PagarMePHP\Request;
 use PagarMePHP\Entity\Transaction as TransactionEntity;
-use PagarMePHP\CURL\CurlPost as CurlPost;
+use PagarMePHP\CURL\Curl as Curl;
 use \Exception;
 
 class PagarMeTransaction extends PagarMe
@@ -22,19 +22,19 @@ class PagarMeTransaction extends PagarMe
         $this->url_transaction  = $this->url . '/transactions';
     }
 
-    public function setTransactionEntity($transaction_entity){
-        $this->transaction_entity = new TransactionEntity($transaction_entity);
+    public function setDataEntity($data){
+        $this->transaction_entity = new TransactionEntity($data);
     }
 
-    public function getTransactionEntity(){
+    public function getDataEntity(){
 
         return $this->transaction_entity->getTransaction();
     }
     
     public function create(){
 
-        $data = array_merge(array('api_key'=> $this->api_key), $this->getTransactionEntity());
-        return CurlPost::post($this->url_transaction, $data);
+        $data = array_merge(array('api_key'=> $this->api_key), $this->getDataEntity());
+        return Curl::post($this->url_transaction, $data);
 
     }
 }

@@ -4,7 +4,7 @@ namespace PagarMePHP\Request;
 
 use PagarMePHP\Request;
 use PagarMePHP\Entity\Customer as CustomerEntity;
-use PagarMePHP\CURL\CurlPost as CurlPost;
+use PagarMePHP\CURL\Curl as Curl;
 use \Exception;
 
 class PagarMeCustomer extends PagarMe
@@ -22,19 +22,19 @@ class PagarMeCustomer extends PagarMe
         $this->url_customer = $this->url . '/customers';
     }
 
-    public function setCustomerEntity($customer_entity){
-        $this->customer_entity = new CustomerEntity($customer_entity);
+    public function setDataEntity($data){
+        $this->customer_entity = new CustomerEntity($data);
     }
 
-    public function getCustomerEntity(){
+    public function getDataEntity(){
 
         return $this->customer_entity->getCustomer();
     }
     
     public function create(){
 
-        $data = array_merge(array('api_key'=> $this->api_key), $this->getCustomerEntity());
-        return CurlPost::post($this->url_customer, $data);
+        $data = array_merge(array('api_key'=> $this->api_key), $this->getDataEntity());
+        return Curl::post($this->url_customer, $data);
 
     }
 }

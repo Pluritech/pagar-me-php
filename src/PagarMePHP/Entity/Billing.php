@@ -1,4 +1,3 @@
-Billing.php
 <?php
 
 namespace PagarMePHP\Entity;
@@ -18,25 +17,27 @@ class Billing
      */
     public function __construct($data){
 
+        $this->setAddress(new Address($data));
+        $this->setName($data['billing_name']);
     }
 
-    public public function setAddress($address)
+    public function setAddress($address)
     {
     	$this->address = $address;
     }
 
-    public public function setName($name)
+    public function setName($name)
     {
     	$this->name = $name;
     }
 
 
-    public public function getAddress($address)
+    public function getAddress()
     {
-    	return $this->address;
+    	return $this->address->getAddress();
     }
 
-    public public function getName($name)
+    public function getName()
     {
     	return $this->name;
     }

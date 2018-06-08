@@ -5,7 +5,7 @@ namespace PagarMePHP\Request;
 
 use \Exception;
 
-class PagarMe 
+abstract class PagarMe 
 {
     
     protected $api_key = null;
@@ -23,5 +23,7 @@ class PagarMe
         $this->url     = $account['url'];
     }
 
+    abstract public function setDataEntity($data);
+    abstract public function getDataEntity();
 }
 

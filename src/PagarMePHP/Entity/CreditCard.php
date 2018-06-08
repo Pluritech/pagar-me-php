@@ -3,7 +3,7 @@
 namespace PagarMePHP\Entity;
 
 use PagarMePHP\Entity;
-use PagarMePHP\Entity\Document;
+
 use \Exception;
 
 class CreditCard 
@@ -16,27 +16,28 @@ class CreditCard
      * Construct
      */
     public function __construct($data){
+
         $this->setCardHash($data['card_hash']);
         $this->setCustomerId($data['customer_id']);
     }
 
-    public public function setCardHash($card_hash)
+    public function setCardHash($card_hash)
     {
     	$this->card_hash = $card_hash;
     }
 
-    public public function setCustomerId($customer_id)
+    public function setCustomerId($customer_id)
     {
     	$this->customer_id = $customer_id;
     }
 
 
-    public public function getCardHash($card_hash)
+    public function getCardHash()
     {
     	return $this->card_hash;
     }
 
-    public public function getCustomerId($customer_id)
+    public function getCustomerId()
     {
     	return $this->customer_id;
     }

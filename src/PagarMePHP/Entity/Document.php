@@ -15,7 +15,7 @@ class Document
      * Construct
      */
     public function __construct($data){
-
+            
         $this->setNumber($data['number']);         
         $this->setType($data['type']);
     }
@@ -59,11 +59,11 @@ class Document
      */
     public function getDocument(){
 
+
         $data = array(
             'number'    => $this->getNumber(), 
             'type'      => $this->getType(),
         );
-
         return $data;
     }
 
