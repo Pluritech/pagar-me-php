@@ -6,7 +6,7 @@ use PagarMePHP\Entity;
 use PagarMePHP\Entity\TransactionItem as TransactionItem;
 use PagarMePHP\Entity\TransactionSplitRules as TransactionSplitRules;
 use PagarMePHP\Entity\Address as Address;
-use PagarMePHP\Entity\customer as customer;
+use PagarMePHP\Entity\Customer as Customer;
 use PagarMePHP\Entity\Billing as Billing;
 use \Exception;
 
@@ -21,8 +21,8 @@ class Transaction
     private $soft_descriptor = null;
     private $installments    = null;
     private $billing         = null;
-    private $split_rules     = null;
-    private $items           = null;
+    private $split_rules     = array();
+    private $items           = array();
     private $async           = null;
     private $postback_url    = null;
 
@@ -30,8 +30,20 @@ class Transaction
      * Construct
      */
     public function __construct($data){
-
+        $this->setAmount($data['amount']);
+        $this->setCapture($data['capture']);
+        $this->setCardId($data['pagar_me_card_id']);
+        $this->setCustomer(new Customer($data));
+        $this->setPaymentMethod($data['payment_method']);
+        $this->setSoftDescriptor(empty($data['soft_descriptor']) ? null : $data['soft_descriptor']);
+        $this->setInstallments(!empty($data['installments']) ? $data['installments'] : 1);
+        $this->setBilling(new Billing($data));
+        $this->setSplitRules($data['split_rules']);
+        $this->setItems($data['items']);
+        $this->setAsync(empty($data['async']) ? false : true);
+        $this->setPostbackUrl($data['postback_url']);
     }
+
 
     public function setAmount($amount)
     {
@@ -62,28 +74,31 @@ class Transaction
     }
     public function setInstallments($installments)
     {
-        $this->installments = !empty($installments) ? $billing : 1;// número de parcelas a serem descontadas no cartão - default 1
-;
+        $this->installments = $installments;// número de parcelas a serem descontadas no cartão - default 1
     }
 
     public function setBilling($billing)
-    {
-        
-        $this->billing = $billing
-
+    {        
+        $this->billing = $billing;
     }
     public function setSplitRules($split_rules)
-    {
-        $this->split_rules = $split_rules;
+    {   foreach ($split_rules as $key => $value){
+            $split_rule = new TransactionSplitRules($value);
+            $this->split_rules[] = $split_rule->getTransactionSplitRules();
+        }
+        
     }
 
     public function setItems($items)
     {
-        $this->items = $items;
+        foreach ($items as $key => $value){
+            $item = new TransactionItem($value);
+            $this->items[] = $item->getTransactionItem();
+        }
     }
     public function setAsync($async)
     {
-        $this->async = empty($async) ? false : true;
+        $this->async = $async;
     }
 
     public function setPostbackUrl($postback_url)
@@ -108,7 +123,7 @@ class Transaction
 
     public function getCustomer()
     {
-        return $this->customer;
+        return $this->customer->getCustomer();
     }
     public function getPaymentMethod()
     {
@@ -126,7 +141,7 @@ class Transaction
 
     public function getBilling()
     {
-        return $this->billing;
+        return $this->billing->getBilling();
     }
     public function getSplitRules()
     {

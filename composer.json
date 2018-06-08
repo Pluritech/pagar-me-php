@@ -1,0 +1,26 @@
+{
+    "name": "Pluritech/pagar-me-php",
+    "description": "payment gateway.",
+    "keywords": ["gateway de pagamento", "php", "pluritech", "Pagar Me"],
+    "homepage": "https://github.com/Pluritech/pagar-me-php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilherme Augusto Silva Valentim",
+            "email": "valentim.guilherme@gmail.com",
+            "homepage": "https://www.pluritech.com.br"
+        },
+        {
+            "name": "Natália Gonçalves Machado",
+            "email": "nataliagoncalvesmachado@gmail.com",
+            "homepage": "https://www.pluritech.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": {"PagarMePHP\\": "src/PagarMePHP"}
+    }
+}

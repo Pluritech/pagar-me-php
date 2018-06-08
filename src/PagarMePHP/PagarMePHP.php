@@ -2,11 +2,11 @@
 
 namespace PagarMePHP;
 
-use PagarMePHP\Notification\PagarMe as PagarMe;
-use PagarMePHP\Notification\PagarMeCustomer as PagarMeCustomer;
-use PagarMePHP\Notification\PagarMeTransaction as PagarMeTransaction;
-use PagarMePHP\Notification\PagarMeRecipient as PagarMeRecipient;
-use PagarMePHP\Notification\PagarMeCreditCard as PagarMeCreditCard;
+use PagarMePHP\Request\PagarMe as PagarMe;
+use PagarMePHP\Request\PagarMeCustomer as PagarMeCustomer;
+use PagarMePHP\Request\PagarMeTransaction as PagarMeTransaction;
+use PagarMePHP\Request\PagarMeRecipient as PagarMeRecipient;
+use PagarMePHP\Request\PagarMeCreditCard as PagarMeCreditCard;
 
 use \Exception;
 

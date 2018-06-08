@@ -5,7 +5,7 @@ namespace PagarMePHP\Entity;
 use PagarMePHP\Entity;
 use \Exception;
 
-class TransactionSplitRules 
+class TransactionItem 
 {
 
     private $id          = null;
@@ -18,7 +18,11 @@ class TransactionSplitRules
      * Construct
      */
     public function __construct($data){
-
+        $this->setId($data['id']);
+        $this->setTitle($data['title']);
+        $this->setUnitPrice($data['unit_price']);
+        $this->setQuantity((empty($data['quantity'])? 1 : $data['quantity']));
+        $this->setTangible($data['tangible']);
     }
 
     public function setId($id)
@@ -32,7 +36,7 @@ class TransactionSplitRules
     }
     public function setUnitPrice($unit_price)
     {
-        $this->unit_price = $unit_price;
+        $this->unit_price = $unit_price * 100;//valor em centavos
     }
 
     public function setQuantity($quantity)
@@ -74,12 +78,12 @@ class TransactionSplitRules
      * get TransactionSplitRules
      * @return @array
      */
-    public function getTransactionSplitRules(){
+    public function getTransactionItem(){
 
         $params = array(
              'id'          => $this->getId()
             ,'title'       => $this->getTitle()
-             'unit_price'  => $this->getUnitPrice()
+            ,'unit_price'  => $this->getUnitPrice()
             ,'quantity'    => $this->getQuantity()
             ,'tangible'    => $this->getTangible()
 

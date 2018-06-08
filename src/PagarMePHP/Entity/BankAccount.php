@@ -20,7 +20,14 @@ class BankAccount
      * Construct
      */
     public function __construct($data){
-
+        $this->setBankCode($data['bank_code']);
+        $this->setAgencia($data['agency']);
+        $this->setAgenciaDv($data['agency_dv']);
+        $this->setConta($data['account']);
+        $this->setContaDv($data['account_dv']);
+        $this->setType($data['type_code']); //type_account
+        $this->setLegalName($data['titular_name']);
+        $this->setDocumentNumber($data['titular_cpf']);
     }
 
     public function setBankCode($bank_code)
@@ -64,42 +71,42 @@ class BankAccount
     	$this->document_number = $document_number;
     }
 
-    public function getBankCode($bank_code)
+    public function getBankCode()
     {
     	return $this->bank_code;
     }
 
-    public function getAgencia($agencia)
+    public function getAgencia()
     {
     	return $this->agencia;
     }
 
-    public function getAgencia_dv($agencia_dv)
+    public function getAgencia_dv()
     {
     	return $this->agencia_dv;
     }
 
-    public function getConta($conta)
+    public function getConta()
     {
     	return $this->conta;
     }
 
-    public function getContaDv($conta_dv)
+    public function getContaDv()
     {
     	return $this->conta_dv;
     }
 
-    public function getType($type)
+    public function getType()
     {
     	return $this->type;
     }
 
-    public function getLegalName($legal_name)
+    public function getLegalName()
     {
     	return $this->legal_name;
     }
 
-    public function getDocumentNumber($document_number)
+    public function getDocumentNumber()
     {
     	return $this->document_number;
     }

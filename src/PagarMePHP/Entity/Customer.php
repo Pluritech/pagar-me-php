@@ -15,22 +15,31 @@ class Customer
     private $country 	   = null;
     private $external_id   = null;
     private $birthday      = null;
-    private $documents     = null;
+    private $documents     = array();
     private $phone_numbers = null;
+    private $id            = null;
     /**
      * Construct
      */
     public function __construct($data){
-        $this->setName($data['name']);
-        $this->setEmail($data['email']);
+
+        $this->setId(!empty($data['pagar_me_customer_id']) ? $data['pagar_me_customer_id'] : null);
+        $this->setName($data['customer_name']);
+        $this->setEmail($data['customer_email']);
         $this->setType(!empty($data['type']) ? $data['type'] : 'individual');//considerando que todos os clientes são pessoas físicas
         $this->setCountry(!empty($data['country']) ? $data['country'] : 'br');//considerando que todos os usuários são  brasileiros
-        $this->setExternalId($data['external_id']);
-        $this->setBirthday($data['birthday']);
-        $this->setDocuments($data['documents']);
-        $this->setPhoneNumbers($data['phone_numbers']);
+        $this->setExternalId($data['customer_id']);
+        $this->setBirthday($data['customer_birthday']);
+        $this->setDocuments($data['customer_documents']);
+        $this->setPhoneNumbers($data['customer_phone_numbers']);
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+  
     public function setName($name)
     {
     	$this->name = $name;
@@ -63,8 +72,13 @@ class Customer
 
     public function setDocuments($documents)
     {
-    	$document = new Document($documents);
-    	$this->documents = array($document->getDocument);
+
+        foreach ($documents as $key => $value) {
+            
+            $document = new Document($value);
+            $this->documents[] = $document->getDocument();
+        }
+        
     }
 
     public function setPhoneNumbers($phone_numbers)    
@@ -79,42 +93,47 @@ class Customer
     	$this->phone_numbers = $phone_numbers;
     }
 
-    public function getName($name)
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
     {
     	return $this->name;
     }
 
-    public function getEmail($email)
+    public function getEmail()
     {
     	return $this->email;
     }
 
-    public function getType($type)
+    public function getType()
     {
     	return $this->type;
     }
 
-    public function getCountry($country)
+    public function getCountry()
     {
     	return $this->country;
     }
 
-    public function getExternalId($external_id)
+    public function getExternalId()
     {
     	return $this->external_id;
     }
 
-    public function getBirthday($birthday)
+    public function getBirthday()
     {
     	return $this->birthday;
     }
 
-    public function getDocuments($documents)
+    public function getDocuments()
     {
     	return $this->documents;
     }
 
-    public function getPhoneNumbers($phone_numbers)
+    public function getPhoneNumbers()
     {
     	return $this->phone_numbers;
     }
@@ -126,8 +145,8 @@ class Customer
     public function getCustomer(){
 
         $params = array(
-
-             'name'          => $this->getName()
+            ,'id'            => $this->getId()
+            ,'name'          => $this->getName()
             ,'email'         => $this->getEmail()
             ,'type'          => $this->getType()
             ,'country'       => $this->getCountry()

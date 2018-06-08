@@ -1,10 +1,10 @@
 <?php
 
-namespace TotalVoicePhp\CURL;
+namespace PagarMePHP\CURL;
 
 use \Exception;
 
-class CurlPost 
+class Curl
 {
     
 
@@ -36,7 +36,7 @@ class CurlPost
           "Content-Type: application/json"
         ));
 
-        $response  = curl_exec($ch);
+        $response  = json_decode(curl_exec($ch),true);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         switch ($http_code) {
@@ -45,7 +45,6 @@ class CurlPost
                 break;
 
             default:
-
                 return array('http_code' => $http_code, 'error' => $response);
                 break;
         }

@@ -1,11 +1,10 @@
-PagarMeRecipient.php
 <?php
 
 namespace PagarMePHP\Request;
 
 use PagarMePHP\Request;
 use PagarMePHP\Entity\Recipient as RecipientEntity;
-use PagarMePHP\CURL\CurlPost as CurlPost;
+use PagarMePHP\CURL\Curl as Curl;
 use \Exception;
 
 class PagarMeRecipient extends PagarMe
@@ -23,19 +22,19 @@ class PagarMeRecipient extends PagarMe
         $this->url_recipient = $this->url . '/recipients';
     }
 
-    public function setRecipientEntity($recipient_entity){
-        $this->recipient_entity = new RecipientEntity($recipient_entity);
+    public function setDataEntity($data){
+        $this->recipient_entity = new RecipientEntity($data);
     }
 
-    public function getRecipientEntity(){
+    public function getDataEntity(){
 
         return $this->recipient_entity->getRecipient();
     }
     
     public function create(){
 
-        $data = array_merge(array('api_key'=> $this->api_key), $this->getRecipientEntity());
-        return CurlPost::post($this->url_recipient, $data);
+        $data = array_merge(array('api_key'=> $this->api_key), $this->getDataEntity());
+        return Curl::post($this->url_recipient, $data);
 
     }
 }

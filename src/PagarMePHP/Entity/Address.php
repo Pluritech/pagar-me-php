@@ -19,8 +19,15 @@ class Address
     /**
      * Construct
      */
-    public function __construct($config){
-
+    public function __construct($data){
+        $this->setNeighborhood($data['address_neighborhood']);
+        $this->setStreet($data['address_street']);
+        $this->setStreetNumber($data['address_number']);
+        $this->setZipcode($data['address_zipcode']);//considerando que todos os usuários são  brasileiros
+        $this->setComplementary($data['address_observation']);
+        $this->setCity($data['address_city']);
+        $this->setState($data['address_state']);
+        $this->setCountry(!empty($data['country']) ? $data['country'] : 'br');//considerando que todos os usuários são  brasileiros
     }
 
     /**
@@ -50,7 +57,7 @@ class Address
      * Set zipcode
      */
     public function setZipcode($zipcode){
-        $this->zipcode = $zipcode;
+        $this->zipcode = preg_replace("/[^0-9]/", "",$zipcode);
     }
 
     /**
@@ -149,7 +156,7 @@ class Address
             'neighborhood'    => $this->getNeighborhood(), 
             'street'          => $this->getStreet(),
             'street_number'   => $this->getStreetNumber(),
-            'zipcode'         => $this->getZipcode()
+            'zipcode'         => $this->getZipcode(),
             'complementary'   => $this->getComplementary(), 
             'city'            => $this->getCity(),
             'state'           => $this->getState(),
