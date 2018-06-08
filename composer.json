@@ -1,6 +1,6 @@
 {
-    "name": "pluritech/pagar-me-php",
-    "description": "This package has the aim of send SMS with Total Voice Api.",
+    "name": "Pluritech/pagar-me-php",
+    "description": "payment gateway.",
     "keywords": ["gateway de pagamento", "php", "pluritech", "Pagar Me"],
     "homepage": "https://github.com/Pluritech/pagar-me-php",
     "type": "library",
