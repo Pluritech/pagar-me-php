@@ -16,6 +16,7 @@ class BankAccount
     private $type            = null;
     private $legal_name      = null;
     private $document_number = null;
+    
     /**
      * Construct
      */
@@ -30,42 +31,59 @@ class BankAccount
         $this->setDocumentNumber($data['titular_cpf']);
     }
 
+    /**
+     * Set bank_code
+     */
     public function setBankCode($bank_code)
     {
     	$this->bank_code = $bank_code;
     }
-
+    /**
+     * Set agencia
+     */
     public function setAgencia($agencia)
     {
     	$this->agencia = $agencia;
     }
-
+    /**
+     * Set agencia_dv
+     */
     public function setAgenciaDv($agencia_dv)
     {
     	$this->agencia_dv = $agencia_dv;
     }
-
+    /**
+     * Set conta
+     */
     public function setConta($conta)
     {
     	$this->conta = $conta;
     }
-
+    /**
+     * Set conta_dv
+     */
     public function setContaDv($conta_dv)
     {
     	$this->conta_dv = $conta_dv;
     }
-
+    /**
+     * Set type
+     */
     public function setType($type)
     {
     	$this->type = $type;
     }
-
+    /**
+     * Set legal_name
+     */
     public function setLegalName($legal_name)
     {
     	$this->legal_name = $legal_name;
     }
-
-    public function setDocumentNumber($document_number)    
+    /**
+     * Set document_number
+     */
+    public function setDocumentNumber($document_number)
     {
     	$document_number = preg_replace("/[^0-9]/", "",$document_number);
     	$this->document_number = $document_number;

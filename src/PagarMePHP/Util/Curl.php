@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMePHP\CURL;
+namespace PagarMePHP\Util;
 
 use \Exception;
 
@@ -45,7 +45,7 @@ class Curl
                 break;
 
             default:
-                return array('http_code' => $http_code, 'error' => $response);
+                return array_merge(array('http_code' => $http_code), $response);
                 break;
         }
     }

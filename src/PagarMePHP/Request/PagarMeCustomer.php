@@ -4,7 +4,7 @@ namespace PagarMePHP\Request;
 
 use PagarMePHP\Request;
 use PagarMePHP\Entity\Customer as CustomerEntity;
-use PagarMePHP\CURL\Curl as Curl;
+use PagarMePHP\Util\Curl as Curl;
 use \Exception;
 
 class PagarMeCustomer extends PagarMe

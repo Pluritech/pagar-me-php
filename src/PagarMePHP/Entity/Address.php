@@ -16,6 +16,7 @@ class Address
     private $city;
     private $state;
     private $country;
+    
     /**
      * Construct
      */
