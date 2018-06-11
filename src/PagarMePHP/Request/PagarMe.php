@@ -25,5 +25,6 @@ abstract class PagarMe
 
     abstract public function setDataEntity($data);
     abstract public function getDataEntity();
+    abstract public function create();
 }
 

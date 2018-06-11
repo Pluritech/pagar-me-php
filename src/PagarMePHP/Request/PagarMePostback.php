@@ -45,10 +45,9 @@ class PagarMePostback extends PagarMe
             return array('http_code' => 200, 'response' => $response);
 
         } catch (Exception $e) {
-            return array('http_code' => 400, 'errors' => array('status' => 'ErrorOnPostbackStructure', 'message' => $e->getMessage));
+            return array('http_code' => 400, 'errors' => array('status' => 'ErrorOnPagarMePostback', 'message' => $e->getMessage));
         }
-        
-
+       
     }
 }
 

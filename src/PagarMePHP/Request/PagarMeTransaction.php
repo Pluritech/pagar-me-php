@@ -33,8 +33,13 @@ class PagarMeTransaction extends PagarMe
     
     public function create(){
 
-        $data = array_merge(array('api_key'=> $this->api_key), $this->getDataEntity());
-        return Curl::post($this->url_transaction, $data);
+        try {
+            $data = array_merge(array('api_key' => $this->api_key), $this->getDataEntity());
+            return Curl::post($this->url_transaction, $data);    
+        } catch (Exception $e) {
+            return array('http_code' => 400, 'errors' => array('status' => 'ErrorOnPagarMeTransaction', 'message' => $e->getMessage));
+        }
+        
 
     }
 }
