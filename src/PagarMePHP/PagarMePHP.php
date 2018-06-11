@@ -7,6 +7,7 @@ use PagarMePHP\Request\PagarMeCustomer as PagarMeCustomer;
 use PagarMePHP\Request\PagarMeTransaction as PagarMeTransaction;
 use PagarMePHP\Request\PagarMeRecipient as PagarMeRecipient;
 use PagarMePHP\Request\PagarMeCreditCard as PagarMeCreditCard;
+use PagarMePHP\Request\PagarMePostback as PagarMePostback;
 
 use \Exception;
 
@@ -35,6 +36,9 @@ class PagarMePHP
                 break;
             case 'PagarMeCreditCard':
                 $this->myclass =  new PagarMeCreditCard($config);
+                break;
+            case 'PagarMePostback':
+                $this->myclass =  new PagarMePostback($config);
                 break;
             default:
                 $this->myclass = new PagarMe($config);
