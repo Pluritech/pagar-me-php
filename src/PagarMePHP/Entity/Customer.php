@@ -145,7 +145,7 @@ class Customer
     public function getCustomer(){
 
         $params = array(
-            ,'id'            => $this->getId()
+             'id'            => $this->getId()
             ,'name'          => $this->getName()
             ,'email'         => $this->getEmail()
             ,'type'          => $this->getType()
